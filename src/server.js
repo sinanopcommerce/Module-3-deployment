@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fileURLToPath = require('url');
+const open = require('open');
 // import path from 'path';
 // import { fileURLToPath } from 'url';
 
@@ -8,7 +9,7 @@ const fileURLToPath = require('url');
 // const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,8 +32,13 @@ let server;
 
 if (require.main === module) {
   // If the file is run directly, start the server
-  const PORT = process.env.PORT || 5000;
-  server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  const PORT = process.env.PORT || 80;
+  server = app.listen(PORT, () => {
+    const url = `http://localhost:${PORT}`;
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Opening browser at ${url}`);
+    open(url);
+  });
 }
 
 module.exports = app
