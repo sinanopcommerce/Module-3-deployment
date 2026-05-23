@@ -9,7 +9,7 @@ const open = require('open');
 // const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000;
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,7 +32,7 @@ let server;
 
 if (require.main === module) {
   // If the file is run directly, start the server
-  const PORT = process.env.PORT || 80;
+  const PORT = process.env.PORT || 5000;
   server = app.listen(PORT, () => {
     const url = `http://localhost:${PORT}`;
     console.log(`Server running on port ${PORT}`);
